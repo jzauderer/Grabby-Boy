@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArmController : MonoBehaviour
 {
 	private Vector3 mousePos;
-	
+
     void Update()
     {
     	mousePos = Input.mousePosition;
@@ -15,7 +15,7 @@ public class ArmController : MonoBehaviour
     	transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 
     	//Control rotation of the arm
-    	Vector3 rotationPos = new Vector3(mousePos.y/Screen.height * -55f + 105, 0, mousePos.x/Screen.width * -85f + 45);
+    	Vector3 rotationPos = new Vector3(mousePos.y/Screen.height * -55f + 105, 0, mousePos.x/Screen.width * -85f + 50);
     	transform.rotation = Quaternion.Euler(rotationPos);
     }
 }
