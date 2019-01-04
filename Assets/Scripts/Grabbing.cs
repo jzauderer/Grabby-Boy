@@ -43,12 +43,12 @@ public class Grabbing : MonoBehaviour
             if(Input.GetMouseButtonUp(0))
             {
                 //Get rigidbody of the thrown object
-                Rigidbody[] otherRigidBody = other.GetComponentsInChildren<Rigidbody>();
+                Rigidbody[] otherRigidBody = other.GetComponentsInParent<Rigidbody>();
                 //If held long enough, throw it. Otherwise, let it drop
                 if(tossTimeIndex >= tossTime-1)
                 {
-                    Vector3 launchDirection = other.transform.position - positions[0];
-                    Vector3 resultantForce = new Vector3(launchDirection.x/2.0f, launchDirection.y/2.0f, Mathf.Abs(launchDirection.z*3.0f));
+                    Vector3 launchDirection = positions[tossTime/2] - positions[0];
+                    Vector3 resultantForce = new Vector3(launchDirection.x, launchDirection.y/5.0f, Mathf.Abs(launchDirection.z*3.0f));
                     otherRigidBody[0].velocity = resultantForce*tossSpeedMult;
                 }
                 else
