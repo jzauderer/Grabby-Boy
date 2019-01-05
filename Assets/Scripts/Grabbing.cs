@@ -48,7 +48,7 @@ public class Grabbing : MonoBehaviour
                 if(tossTimeIndex >= tossTime-1)
                 {
                     Vector3 launchDirection = positions[tossTime/2] - positions[0];
-                    Vector3 resultantForce = new Vector3(launchDirection.x/2.0f, launchDirection.y/5.0f, launchDirection.z*3.0f);
+                    Vector3 resultantForce = new Vector3(launchDirection.x/2.0f, launchDirection.y/5.0f, Mathf.Abs(launchDirection.z)*3.0f);
                     otherRigidBody[0].velocity = resultantForce*tossSpeedMult;
                 }
                 else
@@ -67,7 +67,7 @@ public class Grabbing : MonoBehaviour
     			if(!objectGrabbed)
     			{
     				objectGrabbed = true;
-    				offset = (other.transform.position - transform.position)/3;
+    				offset = (other.transform.position - transform.position)/5;
     			}
     			other.transform.position = transform.position + offset;
 

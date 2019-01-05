@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 498}
   m_MaxSize: {x: 14002, y: 14048}
   vertical: 0
-  controlID: 10
+  controlID: 87
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 86
+  controlID: 67
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 87
+  controlID: 68
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -263,14 +263,14 @@ MonoBehaviour:
     y: 0
     width: 1132
     height: 713
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -309,19 +309,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Projects\Grabby Boy
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 12260000
-    m_LastClickedID: 9746
+    m_SelectedIDs: 8a260000
+    m_LastClickedID: 9866
     m_ExpandedIDs: 000000001226000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -469,9 +469,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 8a260000
       m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff66280000
+      m_ExpandedIDs: aa67ffff6471ffff5c8dffff92ddffffd4fbffff662800008e28000098280000b6280000ca280000d4280000e8280000ec28000026290000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -527,9 +527,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.4844465, y: 10.751862, z: 2.5287728}
+    m_Target: {x: 0.04820618, y: 2.3535771, z: 10.129339}
     speed: 2
-    m_Value: {x: -1.4844465, y: 10.751862, z: 2.5287728}
+    m_Value: {x: 0.04820618, y: 2.3535771, z: 10.129339}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -557,13 +557,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.3867835, y: 0.60286623, z: -0.4164391, w: -0.55993694}
+    m_Target: {x: -0.12565827, y: 0.012203594, z: -0.0015378405, w: -0.99199736}
     speed: 2
-    m_Value: {x: -0.3867835, y: 0.60286623, z: -0.4164391, w: -0.55993694}
+    m_Value: {x: -0.12565827, y: 0.012203594, z: -0.0015378405, w: -0.99199736}
   m_Size:
-    m_Target: 38.17416
+    m_Target: 3.1673982
     speed: 2
-    m_Value: 38.17416
+    m_Value: 3.1673982
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -623,7 +623,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 774
+    y: 786
     width: 1462
-    height: 266
+    height: 254
   m_PersistentViewDataDictionary: {fileID: 0}
