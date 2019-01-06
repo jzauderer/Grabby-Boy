@@ -12,6 +12,7 @@ public class Grabbing : MonoBehaviour
     private bool grabOn;
     private bool objectGrabbed;
     private Vector3 offset;
+    private Vector3 offsetAngle;
     private Vector3[] positions;
     private int tossTimeIndex;
 
@@ -69,7 +70,8 @@ public class Grabbing : MonoBehaviour
     				objectGrabbed = true;
     				offset = (other.transform.position - transform.position)/5;
     			}
-    			other.transform.position = transform.position + offset;
+    			other.transform.position = transform.TransformPoint(offset);
+                other.transform.rotation = transform.rotation;
 
                 /*
                 positions stores the positions of the object over the last

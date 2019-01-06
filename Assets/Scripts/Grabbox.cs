@@ -8,10 +8,12 @@ public class Grabbox : MonoBehaviour
 	public float magnetPower;
 
 	private bool touchingHand;
+	private GameObject objParent;
 
 	void Start()
 	{
 		touchingHand = false;
+		objParent = myPhysicalObject.transform.parent.gameObject;
 	}
     
 	void OnTriggerStay(Collider other)
@@ -44,12 +46,18 @@ public class Grabbox : MonoBehaviour
     	if(Input.GetMouseButton(0) && touchingHand)
     	{
     		myPhysicalObject.transform.position = transform.position;
-    		myPhysicalObject.GetComponent<Rigidbody>().useGravity = false;
+    		foreach(Transform child in objParent.transform)
+    		{
+    			child.gameObject.GetComponent<Rigidbody>().useGravity = false;
+    		}
     	}
     	else
     	{
     		transform.position = myPhysicalObject.transform.position;
-    		myPhysicalObject.GetComponent<Rigidbody>().useGravity = true;
+    		foreach(Transform child in objParent.transform)
+    		{
+    			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
+    		}
     	}
     }
 }
