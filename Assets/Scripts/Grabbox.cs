@@ -8,12 +8,10 @@ public class Grabbox : MonoBehaviour
 	public float magnetPower;
 
 	private bool touchingHand;
-	private GameObject objParent;
 
 	void Start()
 	{
 		touchingHand = false;
-		objParent = myPhysicalObject.transform.parent.gameObject;
 	}
     
 	void OnTriggerStay(Collider other)
@@ -39,24 +37,50 @@ public class Grabbox : MonoBehaviour
     	{
     		GameObject handBox = GameObject.FindGameObjectsWithTag("HandGrabBox")[0];
     		Vector3 magnetVector = handBox.transform.position - transform.position;
-    		myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower);
+    		//Magnetism is stronger on the y axis to prevent them 
+    		//from just lying on the floor in front of you.
+    		magnetVector = new Vector3(magnetVector.x, magnetVector.y * 6.0f, magnetVector.z);
+    		myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower * Time.deltaTime);
     	}
 
     	//Turn gravity off when the object is held and makes the grabbox properly follow the object
     	if(Input.GetMouseButton(0) && touchingHand)
     	{
+    		//Instead of the grabbox following the object, now the object should
+    		//follow the grabbox, as that's the one being manipulated here
     		myPhysicalObject.transform.position = transform.position;
-    		foreach(Transform child in objParent.transform)
+
+    		if(myPhysicalObject.transform.parent != null)
     		{
-    			child.gameObject.GetComponent<Rigidbody>().useGravity = false;
+    			//If the grabbed object is an enemy with multiple parts,
+    			//make sure all parts are set to have no gravity
+    			GameObject objParent = myPhysicalObject.transform.parent.gameObject;
+    			foreach(Transform child in objParent.transform)
+	    		{
+	    			child.gameObject.GetComponent<Rigidbody>().useGravity = false;
+	    		}
     		}
+    		else
+    		{
+    			//Otherwise, only the object itself needs that change
+    			myPhysicalObject.GetComponent<Rigidbody>().useGravity = false;
+    		}
+    		
     	}
     	else
     	{
     		transform.position = myPhysicalObject.transform.position;
-    		foreach(Transform child in objParent.transform)
+    		if(myPhysicalObject.transform.parent != null)
     		{
-    			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
+    			GameObject objParent = myPhysicalObject.transform.parent.gameObject;
+    			foreach(Transform child in objParent.transform)
+	    		{
+	    			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
+	    		}
+    		}
+    		else
+    		{
+    			myPhysicalObject.GetComponent<Rigidbody>().useGravity = true;
     		}
     	}
     }

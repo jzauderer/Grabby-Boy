@@ -214,4 +214,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPhysicalObject: {fileID: 1123040814824453933}
-  magnetPower: 2
+  magnetPower: 100

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ArmController.cs" />
+     <Compile Include="Assets\Scripts\EnemyStanding.cs" />
      <Compile Include="Assets\Scripts\Grabbing.cs" />
      <Compile Include="Assets\Scripts\Grabbox.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
