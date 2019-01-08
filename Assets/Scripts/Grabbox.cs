@@ -50,6 +50,7 @@ public class Grabbox : MonoBehaviour
     		//follow the grabbox, as that's the one being manipulated here
     		myPhysicalObject.transform.position = transform.position;
 
+/*
     		if(myPhysicalObject.transform.parent != null)
     		{
     			//If the grabbed object is an enemy with multiple parts,
@@ -65,11 +66,13 @@ public class Grabbox : MonoBehaviour
     			//Otherwise, only the object itself needs that change
     			myPhysicalObject.GetComponent<Rigidbody>().useGravity = false;
     		}
+*/
     		
     	}
     	else
     	{
     		transform.position = myPhysicalObject.transform.position;
+            /*
     		if(myPhysicalObject.transform.parent != null)
     		{
     			GameObject objParent = myPhysicalObject.transform.parent.gameObject;
@@ -82,6 +85,7 @@ public class Grabbox : MonoBehaviour
     		{
     			myPhysicalObject.GetComponent<Rigidbody>().useGravity = true;
     		}
+            */
     	}
     }
 }
