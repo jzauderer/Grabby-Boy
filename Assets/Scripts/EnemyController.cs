@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
     	//After every interval, move to a random spot in the bounds
         if(moveTimer > moveStay)
         {
-            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2f,5f), Random.Range(5.5f,24f));
+            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2f,5f), Random.Range(17.5f,24f));
         	torso.position = newLoc;
         	torso.rotation = Quaternion.Euler(new Vector3(0, 0 ,0));
         	freezing = true;
@@ -75,15 +75,18 @@ public class EnemyController : MonoBehaviour
         //Enemy should behave differently when grabbed
         if(grabbed)
         {
+        	moveTimer = 0;
         	//Remove gravity
         	foreach(Transform child in transform)
     		{
     			child.gameObject.GetComponent<Rigidbody>().useGravity = false;
     		}
         }
+
         //Enemy should use gravity after being thrown
-        else if(flung)
+        if(flung)
         {
+        	moveTimer = 0;
 			foreach(Transform child in transform)
     		{
     			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
