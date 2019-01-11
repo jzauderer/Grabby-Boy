@@ -57,6 +57,14 @@ public class Grabbing : MonoBehaviour
                     otherRigidBody[0].velocity = Vector3.zero;
                     otherRigidBody[0].angularVelocity = Vector3.zero;
                 }
+
+                //If the object is an enemy, let it know it has been grabbed
+                if(other.transform.parent.parent != null) //Will only be true on enemies
+                {
+                    other.transform.parent.parent.GetComponent<EnemyController>().grabbed = false;
+                    other.transform.parent.parent.GetComponent<EnemyController>().flung = true;
+                }
+
                 //Reset array of positions for grabbed object
                 positions = new Vector3[tossTime];
                 tossTimeIndex = 0;
@@ -72,6 +80,12 @@ public class Grabbing : MonoBehaviour
     			}
     			other.transform.position = transform.TransformPoint(offset);
                 other.transform.rotation = transform.rotation;
+
+                if(other.transform.parent.parent != null) //Will only be true on enemies
+                {
+                    other.transform.parent.parent.GetComponent<EnemyController>().grabbed = true;
+                    other.transform.parent.parent.GetComponent<EnemyController>().flung = false;
+                }
 
                 /*
                 positions stores the positions of the object over the last

@@ -50,42 +50,20 @@ public class Grabbox : MonoBehaviour
     		//follow the grabbox, as that's the one being manipulated here
     		myPhysicalObject.transform.position = transform.position;
 
-/*
-    		if(myPhysicalObject.transform.parent != null)
+            //For throwing projectiles, which do not handle their own gravity
+    		if(myPhysicalObject.transform.parent == null)
     		{
-    			//If the grabbed object is an enemy with multiple parts,
-    			//make sure all parts are set to have no gravity
-    			GameObject objParent = myPhysicalObject.transform.parent.gameObject;
-    			foreach(Transform child in objParent.transform)
-	    		{
-	    			child.gameObject.GetComponent<Rigidbody>().useGravity = false;
-	    		}
-    		}
-    		else
-    		{
-    			//Otherwise, only the object itself needs that change
     			myPhysicalObject.GetComponent<Rigidbody>().useGravity = false;
     		}
-*/
-    		
     	}
     	else
     	{
     		transform.position = myPhysicalObject.transform.position;
-            /*
-    		if(myPhysicalObject.transform.parent != null)
-    		{
-    			GameObject objParent = myPhysicalObject.transform.parent.gameObject;
-    			foreach(Transform child in objParent.transform)
-	    		{
-	    			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
-	    		}
-    		}
-    		else
+            
+    		if(myPhysicalObject.transform.parent == null)
     		{
     			myPhysicalObject.GetComponent<Rigidbody>().useGravity = true;
     		}
-            */
     	}
     }
 }

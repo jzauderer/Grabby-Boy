@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc21571090d261409649885f7edae94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveStay: 5
+  moveStay: 10
   freezeDur: 0.5
 --- !u!1 &8515020056091651632
 GameObject:
