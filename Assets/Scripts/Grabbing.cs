@@ -37,6 +37,24 @@ public class Grabbing : MonoBehaviour
     	}
     }
 
+    //This catches cases where the grabbed object leaves our grip
+    //without us letting go, like if they get knocked out by another object
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Grabbable"))
+        {
+            if(other.transform.parent.parent != null)
+            {
+                other.transform.parent.parent.GetComponent<EnemyController>().grabbed = false;
+                other.transform.parent.parent.GetComponent<EnemyController>().flung = true;
+            }
+            else
+            {
+                other.transform.parent.GetComponent<Rigidbody>().useGravity = true;
+            }
+        }
+    }
+
     void OnTriggerStay(Collider other){
     	if(other.gameObject.CompareTag("Grabbable"))
     	{
@@ -50,14 +68,28 @@ public class Grabbing : MonoBehaviour
                 {
                     Vector3 launchDirection = positions[tossTime/2] - positions[0];
 
-                    //Multipliers for the different directions for throwing
-                    Vector3 resultantForce = new Vector3(launchDirection.x/1.5f, launchDirection.y/5.0f, Mathf.Abs(launchDirection.z)*8.0f);
-                    
-                    otherRigidBody[0].velocity = resultantForce*tossSpeedMult;
-                    while(otherRigidBody[0].velocity.magnitude > 40.0f)
+                    //Multiplyers for the different directions for throwing
+                    Vector3 modifiedForce = new Vector3(launchDirection.x/1.8f, launchDirection.y/5.0f, Mathf.Abs(launchDirection.z)*8.0f);
+
+                    Vector3 finalForce = modifiedForce*tossSpeedMult;
+
+                    //The force of the throw is capped depending on what is being thrown
+                    if(other.transform.parent.parent != null)
                     {
-                        otherRigidBody[0].velocity = otherRigidBody[0].velocity * 0.8f;
+                        while(finalForce.magnitude > 80.0f)
+                        {
+                            finalForce = finalForce * 0.8f;
+                        }
                     }
+                    else
+                    {
+                        while(finalForce.magnitude > 40.0f)
+                        {
+                            finalForce = finalForce * 0.8f;
+                        }
+                    }
+
+                    otherRigidBody[0].velocity = finalForce;
                 }
                 else
                 {
