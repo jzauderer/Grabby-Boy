@@ -40,7 +40,12 @@ public class Grabbox : MonoBehaviour
     		//Magnetism is stronger on the y axis to prevent them 
     		//from just lying on the floor in front of you.
     		magnetVector = new Vector3(magnetVector.x, magnetVector.y * 6.0f, magnetVector.z);
-    		myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower * Time.deltaTime);
+            
+            //Only projectiles and weakened enemies can be pulled
+            if(myPhysicalObject.GetComponent<Rigidbody>().useGravity == true)
+            {
+                myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower * Time.deltaTime);
+            }
     	}
 
     	//Turn gravity off when the object is held and makes the grabbox properly follow the object
