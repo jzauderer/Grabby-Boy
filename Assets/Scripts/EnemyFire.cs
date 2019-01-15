@@ -25,7 +25,7 @@ public class EnemyFire : MonoBehaviour
     void Update()
     {
     	//If the enemy is in a state where they can fire
-    	if(!(parentEntity.flung || parentEntity.grabbed))
+    	if(!(parentEntity.flung || parentEntity.grabbed) && !parentEntity.dead)
     	{
     		fireTimer += Time.deltaTime;
 

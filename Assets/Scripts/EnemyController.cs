@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 
     public bool grabbed;
     public bool flung;
+    public bool dead;
 
     private Transform torso;
     private Transform armR;
@@ -37,11 +38,12 @@ public class EnemyController : MonoBehaviour
         freezing = false;
         grabbed = false;
         flung = false;
+        dead = false;
     }
 
     void Update()
     {
-    	if(!grabbed && !flung)
+    	if(!grabbed && !flung && !dead)
     		moveTimer += Time.deltaTime;
 
     	//After every interval, move to a random spot in the bounds
