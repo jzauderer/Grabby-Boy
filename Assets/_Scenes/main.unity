@@ -869,7 +869,7 @@ PrefabInstance:
     - target: {fileID: 8130839290673936287, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.51
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8130839290673936287, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
@@ -914,27 +914,42 @@ PrefabInstance:
     - target: {fileID: 8130839289990824588, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.0000023841856
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130839289990824626, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.0000023841856
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130839289990824624, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.000001589457
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130839289990824627, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.000001589457
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130839289990824625, guid: fd69fc15bf83dbc468e0ba1a33809f42,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.0000009536743
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168749897723056310, guid: fd69fc15bf83dbc468e0ba1a33809f42,
+        type: 3}
+      propertyPath: weakened
+      value: 
+      objectReference: {fileID: 8300000, guid: 38c35f9cba7248148aa84e39cd196735, type: 3}
+    - target: {fileID: 5096648769576578889, guid: fd69fc15bf83dbc468e0ba1a33809f42,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096648769576578889, guid: fd69fc15bf83dbc468e0ba1a33809f42,
+        type: 3}
+      propertyPath: MinDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd69fc15bf83dbc468e0ba1a33809f42, type: 3}

@@ -43,8 +43,7 @@ public class Projectile : MonoBehaviour
     	{
     		if(other.gameObject.transform.parent.tag == "Enemy")
 	    	{
-	    		other.gameObject.transform.parent.GetComponent<EnemyController>().flung = true;
-	    		//Destroy(gameObject);
+	    		Destroy(gameObject);
 	    	}
     	}
     }
