@@ -29,14 +29,21 @@ public class Hurtbox : MonoBehaviour
 
     	//Only take damage from projectiles when not grabbed or flung
     	//Bonus damage if the collision is from a projectile
+    	//Damage taken from projectile also scales to the part hit
     	if(other.gameObject.CompareTag("Projectile") && !enemyState.grabbed && !enemyState.flung)
     	{
     		enemyState.flung = true;
-    		hpScript.changeHealth(impactSpeed*-0.75f);
+    		if(gameObject.CompareTag("Torso"))
+    			hpScript.changeHealth(impactSpeed*-0.75f);
+    		else if(gameObject.CompareTag("Head"))
+    			hpScript.changeHealth(impactSpeed*-1.00f);
+    		else
+    			hpScript.changeHealth(impactSpeed*-0.25f);
     		weakened.Play();
     	}
     	//Don't take damage when held
-    	else if(!enemyState.grabbed)
+    	//Only takes normal bludgeoning damage on head and torso
+    	else if(!enemyState.grabbed && (gameObject.CompareTag("Torso") || gameObject.CompareTag("Head")))
     	{
     		hpScript.changeHealth(impactSpeed*-0.3f);
     		
