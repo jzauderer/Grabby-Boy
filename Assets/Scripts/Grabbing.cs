@@ -15,6 +15,7 @@ public class Grabbing : MonoBehaviour
     private Vector3 offsetAngle;
     private Vector3[] positions;
     private int tossTimeIndex;
+    private AudioSource pullSFX;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Grabbing : MonoBehaviour
         objectGrabbed = false;
         positions = new Vector3[tossTime];
         tossTimeIndex = 0;
+        pullSFX = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -35,6 +37,12 @@ public class Grabbing : MonoBehaviour
     		grabOn = false;
             objectGrabbed = false;
     	}
+
+        //Magnetism SFX
+        if(Input.GetMouseButtonDown(1) && !pullSFX.isPlaying)
+            pullSFX.Play();
+        else if(Input.GetMouseButtonUp(1) && pullSFX.isPlaying)
+            pullSFX.Stop();
     }
 
     //This catches cases where the grabbed object leaves our grip

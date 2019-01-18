@@ -34,11 +34,11 @@ public class Hurtbox : MonoBehaviour
     	{
     		enemyState.flung = true;
     		if(gameObject.CompareTag("Torso"))
-    			hpScript.changeHealth(impactSpeed*-0.75f);
+    			hpScript.changeHealth(impactSpeed*-1.25f);
     		else if(gameObject.CompareTag("Head"))
-    			hpScript.changeHealth(impactSpeed*-1.00f);
+    			hpScript.changeHealth(impactSpeed*-2.50f);
     		else
-    			hpScript.changeHealth(impactSpeed*-0.25f);
+    			hpScript.changeHealth(impactSpeed*-0.5f);
     		weakened.Play();
     	}
     	//Don't take damage when held

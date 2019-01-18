@@ -17,7 +17,7 @@ public class Healthbar : MonoBehaviour
 
     void UpdateSize()
     {
-    	healthImage.rectTransform.localScale = new Vector3(currentHealth/maxHealth,1,1);
+    	healthImage.fillAmount = currentHealth/maxHealth;
     }
 
     public void changeHealth(float change)
