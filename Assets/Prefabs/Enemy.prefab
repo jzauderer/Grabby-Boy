@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPhysicalObject: {fileID: 8130839289990824587}
-  magnetPower: 100
+  magnetPower: 150
 --- !u!1 &8130839289990824587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveStay: 10
-  freezeDur: 0.5
+  freezeDur: 0.2
   grabbed: 0
   flung: 0
   dead: 0
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a06bc4f1aa4c54791274c8f882fdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDelay: 3
+  fireDelay: 2
   projectile: {fileID: 1123040814824453920, guid: 9262b0d785b69c04389f1ffa9f5aa98d,
     type: 3}
   fireForce: 100
@@ -2060,7 +2060,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6747def0520623d48abe9d6a811e149b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -114,7 +114,7 @@ public class Grabbing : MonoBehaviour
                     Vector3 launchDirection = positions[tossTime/2] - positions[0];
 
                     //Multiplyers for the different directions for throwing
-                    Vector3 modifiedForce = new Vector3(launchDirection.x/1.8f, (launchDirection.y/2f) + 0.25f, Mathf.Abs(launchDirection.z)*8.0f);
+                    Vector3 modifiedForce = new Vector3(launchDirection.x/1f, (launchDirection.y/2f) + 0.1f, Mathf.Abs(launchDirection.z)*8.0f);
 
                     Vector3 finalForce = modifiedForce*tossSpeedMult;
 
