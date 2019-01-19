@@ -36,15 +36,20 @@ public class Grabbox : MonoBehaviour
     	if(Input.GetMouseButton(1))
     	{
     		GameObject handBox = GameObject.FindGameObjectsWithTag("HandGrabBox")[0];
-    		Vector3 magnetVector = handBox.transform.position - transform.position;
-    		//Magnetism is stronger on the y axis to prevent them 
-    		//from just lying on the floor in front of you.
-    		magnetVector = new Vector3(magnetVector.x, magnetVector.y * 6.0f, magnetVector.z);
-            
-            //Only projectiles and weakened enemies can be pulled
-            if(myPhysicalObject.GetComponent<Rigidbody>().useGravity == true)
+            Grabbing grabScript = handBox.GetComponent<Grabbing>();
+            //You can only pull when you have sufficient energy
+            if(grabScript.currentEnergy > 0)
             {
-                myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower * Time.deltaTime);
+        		Vector3 magnetVector = handBox.transform.position - transform.position;
+        		//Magnetism is stronger on the y axis to prevent them 
+        		//from just lying on the floor in front of you.
+        		magnetVector = new Vector3(magnetVector.x, magnetVector.y * 6.0f, magnetVector.z);
+                
+                //Only projectiles and weakened enemies can be pulled
+                if(myPhysicalObject.GetComponent<Rigidbody>().useGravity == true)
+                {
+                    myPhysicalObject.GetComponent<Rigidbody>().AddForce(magnetVector * magnetPower * Time.deltaTime);
+                }
             }
     	}
 

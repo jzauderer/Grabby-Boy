@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Grabbox.cs" />
      <Compile Include="Assets\Scripts\Healthbar.cs" />
      <Compile Include="Assets\Scripts\Hurtbox.cs" />
+     <Compile Include="Assets\Scripts\MagnetMeter.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>D:/Unity/Projects/Grabby Boy/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

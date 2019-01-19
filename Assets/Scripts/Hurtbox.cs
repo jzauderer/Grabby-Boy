@@ -43,7 +43,7 @@ public class Hurtbox : MonoBehaviour
     	}
     	//Don't take damage when held
     	//Only takes normal bludgeoning damage on head and torso
-    	else if(!enemyState.grabbed && (gameObject.CompareTag("Torso") || gameObject.CompareTag("Head")))
+    	else if(enemyState.flung && (gameObject.CompareTag("Torso") || gameObject.CompareTag("Head")))
     	{
     		hpScript.changeHealth(impactSpeed*-0.3f);
     		

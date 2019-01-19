@@ -12,6 +12,7 @@ public class EnemyFire : MonoBehaviour
     private float fireTimer;
     private EnemyController parentEntity;
     private Vector3 target;
+    private AudioSource fireSFX;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class EnemyFire : MonoBehaviour
     	target = GameObject.FindGameObjectsWithTag("MainCamera")[0].transform.position;
     	//Make it target a bit above the player to account for gravity
     	target = new Vector3(target.x, target.y + 0.5f, target.z);
+    	fireSFX = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -45,5 +47,6 @@ public class EnemyFire : MonoBehaviour
     {
     	Rigidbody projectileClone = (Rigidbody) Instantiate(projectile, transform.position, transform.rotation);
     	projectileClone.AddForce((target - projectileClone.transform.position) * fireForce);
+    	fireSFX.Play();
     }
 }

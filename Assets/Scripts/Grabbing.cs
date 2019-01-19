@@ -8,6 +8,10 @@ public class Grabbing : MonoBehaviour
     //receive thrown momentum
     public int tossTime;
     public int tossSpeedMult;
+    public float maxEnergy;
+    public float currentEnergy;
+    public float regenCooldown;
+    public float regenRate;
 
     private bool grabOn;
     private bool objectGrabbed;
@@ -15,7 +19,9 @@ public class Grabbing : MonoBehaviour
     private Vector3 offsetAngle;
     private Vector3[] positions;
     private int tossTimeIndex;
+    private float regenTimer;
     private AudioSource pullSFX;
+    private EnemyController enemyScript;
 
     void Start()
     {
@@ -23,7 +29,13 @@ public class Grabbing : MonoBehaviour
         objectGrabbed = false;
         positions = new Vector3[tossTime];
         tossTimeIndex = 0;
+        currentEnergy = maxEnergy;
+        regenTimer = 0.0f;
         pullSFX = GetComponent<AudioSource>();
+
+        //Pull script from enemy
+        GameObject enemyObj = GameObject.FindGameObjectsWithTag("Enemy")[0];
+        enemyScript = enemyObj.GetComponent<EnemyController>();
     }
 
     void Update()
@@ -38,11 +50,36 @@ public class Grabbing : MonoBehaviour
             objectGrabbed = false;
     	}
 
-        //Magnetism SFX
-        if(Input.GetMouseButtonDown(1) && !pullSFX.isPlaying)
-            pullSFX.Play();
-        else if(Input.GetMouseButtonUp(1) && pullSFX.isPlaying)
-            pullSFX.Stop();
+        //Magnetism energy management
+        if(Input.GetMouseButton(1) && currentEnergy > 0)
+        {
+            //Play sfx if it isn't already
+            if(!pullSFX.isPlaying)
+                pullSFX.Play();
+
+            currentEnergy -= Time.deltaTime;
+            if(currentEnergy < 0)
+                currentEnergy = 0;
+
+            //Make sure it can't regen while in use
+            regenTimer = 0.0f;
+        }
+        else if(!Input.GetMouseButton(1) || currentEnergy == 0)
+        {
+            if(pullSFX.isPlaying)
+                pullSFX.Stop();
+
+            //Energy only starts recharging after not using magnetism for a bit
+            //Energy cannot recharge when the enemy is in a grabbable state
+            if(!enemyScript.grabbed && !enemyScript.flung)
+            regenTimer += Time.deltaTime;
+            if(regenTimer > regenCooldown && currentEnergy < maxEnergy)
+            {
+                currentEnergy += Time.deltaTime * regenRate;
+                if(currentEnergy > maxEnergy)
+                    currentEnergy = maxEnergy;
+            }
+        }
     }
 
     //This catches cases where the grabbed object leaves our grip
@@ -53,8 +90,8 @@ public class Grabbing : MonoBehaviour
         {
             if(other.transform.parent.parent != null)
             {
-                other.transform.parent.parent.GetComponent<EnemyController>().grabbed = false;
-                other.transform.parent.parent.GetComponent<EnemyController>().flung = true;
+                enemyScript.grabbed = false;
+                enemyScript.flung = true;
             }
             else
             {
@@ -108,8 +145,8 @@ public class Grabbing : MonoBehaviour
                 //If the object is an enemy, let it know it has been grabbed
                 if(other.transform.parent.parent != null) //Will only be true on enemies
                 {
-                    other.transform.parent.parent.GetComponent<EnemyController>().grabbed = false;
-                    other.transform.parent.parent.GetComponent<EnemyController>().flung = true;
+                    enemyScript.grabbed = false;
+                    enemyScript.flung = true;
                 }
 
                 //Reset array of positions for grabbed object
@@ -130,8 +167,8 @@ public class Grabbing : MonoBehaviour
 
                 if(other.transform.parent.parent != null) //Will only be true on enemies
                 {
-                    other.transform.parent.parent.GetComponent<EnemyController>().grabbed = true;
-                    other.transform.parent.parent.GetComponent<EnemyController>().flung = false;
+                    enemyScript.grabbed = true;
+                    enemyScript.flung = false;
                 }
 
                 /*
