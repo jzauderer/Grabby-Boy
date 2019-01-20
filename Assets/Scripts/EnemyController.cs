@@ -10,6 +10,10 @@ public class EnemyController : MonoBehaviour
     //How long the enemy is frozen in place after moving
     public float freezeDur;
 
+    //Timer to prevent the enemy from lying on the floor
+    //endlessly in the case of very slight movements
+    public float getUpDelay;
+
     public bool grabbed;
     public bool flung;
     public bool dead;
@@ -19,6 +23,8 @@ public class EnemyController : MonoBehaviour
     private Transform armL;
     private Transform legR;
     private Transform legL;
+
+    private float getUpTimer;
 
     private float moveTimer;
 
@@ -39,6 +45,8 @@ public class EnemyController : MonoBehaviour
         grabbed = false;
         flung = false;
         dead = false;
+
+        getUpTimer = 0f;
     }
 
     void Update()
@@ -49,7 +57,7 @@ public class EnemyController : MonoBehaviour
     	//After every interval, move to a random spot in the bounds
         if(moveTimer > moveStay)
         {
-            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2f,5f), Random.Range(17.5f,24f));
+            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2.2f,5f), Random.Range(15.5f,24f));
         	torso.position = newLoc;
         	torso.rotation = Quaternion.Euler(new Vector3(0, 0 ,0));
         	freezing = true;
@@ -77,6 +85,7 @@ public class EnemyController : MonoBehaviour
         //Enemy should behave differently when grabbed
         if(grabbed)
         {
+            getUpTimer = 0;
         	moveTimer = 0;
         	//Remove gravity
         	foreach(Transform child in transform)
@@ -88,6 +97,19 @@ public class EnemyController : MonoBehaviour
         //Enemy should use gravity after being thrown
         if(flung)
         {
+            getUpTimer += Time.deltaTime;
+            if(getUpTimer > getUpDelay)
+            {
+                flung = false;
+                moveTimer = moveStay;
+                foreach(Transform child in transform)
+                {
+                    child.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                }
+            }
+
+
+
         	moveTimer = 0;
 			foreach(Transform child in transform)
     		{

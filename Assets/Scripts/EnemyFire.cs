@@ -16,7 +16,7 @@ public class EnemyFire : MonoBehaviour
 
     void Start()
     {
-    	fireTimer = fireDelay * 0.75f;
+    	fireTimer = fireDelay * 0.9f;
     	parentEntity = transform.parent.parent.GetComponent<EnemyController>();
     	target = GameObject.FindGameObjectsWithTag("MainCamera")[0].transform.position;
     	//Make it target a bit above the player to account for gravity
@@ -39,7 +39,7 @@ public class EnemyFire : MonoBehaviour
     	}
     	else
     	{
-    		fireTimer = 0;
+    		fireTimer = fireDelay * 0.9f;
     	}
     }
 

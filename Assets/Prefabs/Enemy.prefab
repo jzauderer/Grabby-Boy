@@ -1905,7 +1905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveStay: 10
-  freezeDur: 0.2
+  freezeDur: 0.3
+  getUpDelay: 12
   grabbed: 0
   flung: 0
   dead: 0
@@ -2044,7 +2045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a06bc4f1aa4c54791274c8f882fdec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDelay: 2
+  fireDelay: 10
   projectile: {fileID: 1123040814824453920, guid: 9262b0d785b69c04389f1ffa9f5aa98d,
     type: 3}
   fireForce: 100

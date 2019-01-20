@@ -114,14 +114,15 @@ public class Grabbing : MonoBehaviour
                     Vector3 launchDirection = positions[tossTime/2] - positions[0];
 
                     //Multiplyers for the different directions for throwing
-                    Vector3 modifiedForce = new Vector3(launchDirection.x/1f, (launchDirection.y/2f) + 0.1f, Mathf.Abs(launchDirection.z)*8.0f);
+                    Vector3 modifiedForce = new Vector3(launchDirection.x/1f, (launchDirection.y/2f) - 0.25f, Mathf.Abs(launchDirection.z)*8.0f);
 
                     Vector3 finalForce = modifiedForce*tossSpeedMult;
 
                     //The force of the throw is capped depending on what is being thrown
                     if(other.transform.parent.parent != null)
                     {
-                        while(finalForce.magnitude > 80.0f)
+                        //Enemies can be thrown a lot faster than projectiles
+                        while(finalForce.magnitude > 120.0f)
                         {
                             finalForce = finalForce * 0.8f;
                         }

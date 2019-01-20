@@ -30,7 +30,7 @@ public class Hurtbox : MonoBehaviour
     	//Only take damage from projectiles when not grabbed or flung
     	//Bonus damage if the collision is from a projectile
     	//Damage taken from projectile also scales to the part hit
-    	if(other.gameObject.CompareTag("Projectile") && !enemyState.grabbed && !enemyState.flung)
+    	if(other.gameObject.CompareTag("Projectile") && !enemyState.grabbed)
     	{
     		enemyState.flung = true;
     		if(gameObject.CompareTag("Torso"))
@@ -45,7 +45,7 @@ public class Hurtbox : MonoBehaviour
     	//Only takes normal bludgeoning damage on head and torso
     	else if(enemyState.flung && (gameObject.CompareTag("Torso") || gameObject.CompareTag("Head")))
     	{
-    		hpScript.changeHealth(impactSpeed*-0.3f);
+    		hpScript.changeHealth(impactSpeed*-0.25f);
     		
     		//Chooses one of the three hit sounds at random
     		AudioSource.PlayClipAtPoint(hitSounds[Random.Range(0,3)], transform.position);
