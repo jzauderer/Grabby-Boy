@@ -35,7 +35,7 @@ public class MagnetMeter : MonoBehaviour
     {
     	//Magnetism Meter
     	//Change icon to indicate that the enemy is grabbable
-    	if(enemyScript.grabbed || enemyScript.flung)
+    	if((enemyScript.grabbed || enemyScript.flung) && !enemyScript.dead)
     	{
     		gameObject.GetComponent<Image>().sprite = angery;
     		overlay.SetActive(true);
@@ -43,14 +43,9 @@ public class MagnetMeter : MonoBehaviour
     		//"Grab Now" indicator
     		flashTimer += Time.deltaTime;
 
-    		if(flashTimer > flashCooldown && grabIndicator.activeSelf == false)
+    		if(flashTimer > flashCooldown)
     		{
-    			grabIndicator.SetActive(true);
-    			flashTimer = 0.0f;
-    		}
-    		else if(flashTimer > flashCooldown && grabIndicator.activeSelf == true)
-    		{
-    			grabIndicator.SetActive(false);
+    			grabIndicator.SetActive(!grabIndicator.activeSelf);
     			flashTimer = 0.0f;
     		}
     	}

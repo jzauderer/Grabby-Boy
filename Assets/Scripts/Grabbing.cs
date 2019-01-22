@@ -53,6 +53,10 @@ public class Grabbing : MonoBehaviour
         //Magnetism energy management
         if(Input.GetMouseButton(1) && currentEnergy > 0)
         {
+            //If the enemy is dead, you have unlimited energy
+            if(enemyScript.dead)
+                currentEnergy = maxEnergy + Time.deltaTime;
+
             //Play sfx if it isn't already
             if(!pullSFX.isPlaying)
                 pullSFX.Play();

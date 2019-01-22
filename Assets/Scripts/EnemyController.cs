@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
     	//After every interval, move to a random spot in the bounds
         if(moveTimer > moveStay)
         {
-            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2.2f,5f), Random.Range(15.5f,24f));
+            Vector3 newLoc = new Vector3(Random.Range(-7f,7f), Random.Range(2.3f,5f), Random.Range(15.5f,22f));
         	torso.position = newLoc;
         	torso.rotation = Quaternion.Euler(new Vector3(0, 0 ,0));
         	freezing = true;
@@ -100,21 +100,23 @@ public class EnemyController : MonoBehaviour
             getUpTimer += Time.deltaTime;
             if(getUpTimer > getUpDelay)
             {
+                //Failsafe for if they get stuck
                 flung = false;
                 moveTimer = moveStay;
                 foreach(Transform child in transform)
                 {
                     child.gameObject.GetComponent<Rigidbody>().useGravity = false;
                 }
+                getUpTimer = 0;
             }
-
-
-
-        	moveTimer = 0;
-			foreach(Transform child in transform)
-    		{
-    			child.gameObject.GetComponent<Rigidbody>().useGravity = true;
-    		}
+            else
+            {
+                moveTimer = 0;
+                foreach(Transform child in transform)
+                {
+                    child.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                }
+            }
         }
 
         //Enemy should resume movement after reaching a halt
